@@ -1,0 +1,5 @@
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Data\bin\Debug\Rent.Data.dll
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Data\bin\Debug\Rent.Data.pdb
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Data\obj\Debug\Rent.Data.csproj.CoreCompileInputs.cache
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Data\obj\Debug\Rent.Data.dll
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Data\obj\Debug\Rent.Data.pdb

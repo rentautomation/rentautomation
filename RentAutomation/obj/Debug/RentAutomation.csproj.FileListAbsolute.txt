@@ -1,0 +1,7 @@
+C:\Users\OGUZHAN\source\repos\RentAutomation\RentAutomation\bin\Debug\RentAutomation.exe.config
+C:\Users\OGUZHAN\source\repos\RentAutomation\RentAutomation\bin\Debug\RentAutomation.exe
+C:\Users\OGUZHAN\source\repos\RentAutomation\RentAutomation\bin\Debug\RentAutomation.pdb
+C:\Users\OGUZHAN\source\repos\RentAutomation\RentAutomation\obj\Debug\RentAutomation.csprojAssemblyReference.cache
+C:\Users\OGUZHAN\source\repos\RentAutomation\RentAutomation\obj\Debug\RentAutomation.csproj.CoreCompileInputs.cache
+C:\Users\OGUZHAN\source\repos\RentAutomation\RentAutomation\obj\Debug\RentAutomation.exe
+C:\Users\OGUZHAN\source\repos\RentAutomation\RentAutomation\obj\Debug\RentAutomation.pdb

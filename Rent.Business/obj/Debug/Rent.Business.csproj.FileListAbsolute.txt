@@ -1,0 +1,5 @@
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\bin\Debug\Rent.Business.dll
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\bin\Debug\Rent.Business.pdb
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\obj\Debug\Rent.Business.csproj.CoreCompileInputs.cache
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\obj\Debug\Rent.Business.dll
+C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\obj\Debug\Rent.Business.pdb
