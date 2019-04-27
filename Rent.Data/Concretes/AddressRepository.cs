@@ -6,32 +6,31 @@ using System.Threading.Tasks;
 using Rent.Data.Abstracts;
 using Rent.Model.Concretes;
 
-
 namespace Rent.Data.Concretes
 {
-    class CustomerRepository : IRepository<Customer>
+    public class AddressRepository : IRepository<Address>
     {
         public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Insert(Customer entity)
+        public bool Insert(Address entity)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Customer> SelectAll()
+        public IList<Address> SelectAll()
         {
             throw new NotImplementedException();
         }
 
-        public Customer SelectedByNumber(int id)
+        public Address SelectedByNumber(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Customer entity)
+        public bool Update(Address entity)
         {
             throw new NotImplementedException();
         }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rent.Business", "Rent.Busin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rent.Data", "Rent.Data\Rent.Data.csproj", "{99B9530C-FF39-43AE-98CA-637239D1CD87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rent.Model", "Rent.Model\Rent.Model.csproj", "{79AB0FA2-A58F-47E3-BAA9-B40820A07B07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{99B9530C-FF39-43AE-98CA-637239D1CD87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99B9530C-FF39-43AE-98CA-637239D1CD87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99B9530C-FF39-43AE-98CA-637239D1CD87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79AB0FA2-A58F-47E3-BAA9-B40820A07B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79AB0FA2-A58F-47E3-BAA9-B40820A07B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79AB0FA2-A58F-47E3-BAA9-B40820A07B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79AB0FA2-A58F-47E3-BAA9-B40820A07B07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
