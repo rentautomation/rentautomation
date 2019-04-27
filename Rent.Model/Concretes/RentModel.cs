@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rent.Model.Concretes
 {
-    public class Rent
+    public class RentModel
     {
         public int membernumber { get; set; }
         public int vehiclenumber { get; set; }

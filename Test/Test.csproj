@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79AB0FA2-A58F-47E3-BAA9-B40820A07B07}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rent.Model</RootNamespace>
-    <AssemblyName>Rent.Model</AssemblyName>
+    <ProjectGuid>{E6C9CCEF-69B6-4ABA-AEE4-9E5586822F7B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,14 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\Member.cs" />
-    <Compile Include="Concretes\Address.cs" />
-    <Compile Include="Concretes\Company.cs" />
-    <Compile Include="Concretes\Customer.cs" />
-    <Compile Include="Concretes\Personnel.cs" />
-    <Compile Include="Concretes\RentModel.cs" />
-    <Compile Include="Concretes\Vehicle.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rent.Common\Rent.Common.csproj">
+      <Project>{a670c88f-2d2b-4e07-be5b-c311697cd10f}</Project>
+      <Name>Rent.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rent.Data\Rent.Data.csproj">
+      <Project>{99b9530c-ff39-43ae-98ca-637239d1cd87}</Project>
+      <Name>Rent.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rent.Model\Rent.Model.csproj">
+      <Project>{79ab0fa2-a58f-47e3-baa9-b40820a07b07}</Project>
+      <Name>Rent.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

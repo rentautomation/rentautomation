@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79AB0FA2-A58F-47E3-BAA9-B40820A07B07}</ProjectGuid>
+    <ProjectGuid>{A670C88F-2D2B-4E07-BE5B-C311697CD10F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rent.Model</RootNamespace>
-    <AssemblyName>Rent.Model</AssemblyName>
+    <RootNamespace>Rent.Common</RootNamespace>
+    <AssemblyName>Rent.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,14 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\Member.cs" />
-    <Compile Include="Concretes\Address.cs" />
-    <Compile Include="Concretes\Company.cs" />
-    <Compile Include="Concretes\Customer.cs" />
-    <Compile Include="Concretes\Personnel.cs" />
-    <Compile Include="Concretes\RentModel.cs" />
-    <Compile Include="Concretes\Vehicle.cs" />
+    <Compile Include="Concretes\DBHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstacts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

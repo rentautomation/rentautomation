@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rent.Data.Abstracts
 {
-    interface IRepository<TEntity> 
+    public interface IRepository<TEntity> 
     {
         bool Insert(TEntity entity);
         bool Update(TEntity entity);

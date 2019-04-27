@@ -67,6 +67,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Rent.Common\Rent.Common.csproj">
+      <Project>{A670C88F-2D2B-4E07-BE5B-C311697CD10F}</Project>
+      <Name>Rent.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rent.Model\Rent.Model.csproj">
       <Project>{79ab0fa2-a58f-47e3-baa9-b40820a07b07}</Project>
       <Name>Rent.Model</Name>

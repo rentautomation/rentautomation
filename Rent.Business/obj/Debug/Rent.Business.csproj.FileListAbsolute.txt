@@ -3,3 +3,17 @@ C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\bin\Debug\Rent.Busine
 C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\obj\Debug\Rent.Business.csproj.CoreCompileInputs.cache
 C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\obj\Debug\Rent.Business.dll
 C:\Users\OGUZHAN\source\repos\RentAutomation\Rent.Business\obj\Debug\Rent.Business.pdb
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Business.dll
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Business.pdb
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Data.dll
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Model.dll
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Data.pdb
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Model.pdb
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\obj\Debug\Rent.Business.csprojAssemblyReference.cache
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\obj\Debug\Rent.Business.csproj.CoreCompileInputs.cache
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\obj\Debug\Rent.Business.csproj.CopyComplete
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\obj\Debug\Rent.Business.dll
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\obj\Debug\Rent.Business.pdb
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Common.dll
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Data.dll.config
+C:\Users\OGUZHAN\Source\Repos\rentautomation3\Rent.Business\bin\Debug\Rent.Common.pdb

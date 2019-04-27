@@ -8,29 +8,29 @@ using Rent.Model.Concretes;
 
 namespace Rent.Data.Concretes
 {
-    public class RentRepository : IRepository<Rent>
+    public class RentRepository : IRepository<RentModel>
     {
         public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Insert(Rent entity)
+        public bool Insert(RentModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Rent> SelectAll()
+        public IList<RentModel> SelectAll()
         {
             throw new NotImplementedException();
         }
 
-        public Rent SelectedByNumber(int id)
+        public RentModel SelectedByNumber(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Rent entity)
+        public bool Update(RentModel entity)
         {
             throw new NotImplementedException();
         }
