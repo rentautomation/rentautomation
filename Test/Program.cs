@@ -14,18 +14,45 @@ namespace Test
         static void Main(string[] args)
         {
 
-            InsertCustomer();
+            //InsertCustomer();
+            GetAllCustomer();
+        }
+
+        public static void GetAllCustomer()
+        {
+            IRepository<Customer> repository = new CustomerRepository();
+            StringBuilder stringBuilder = new StringBuilder();
+            try
+            {
+                IList<Customer> customers = repository.SelectAll();
+                for (int i = 0; i < customers.Count; i++)
+                {
+                    stringBuilder.Append(customers[i].username+" ");
+                    stringBuilder.Append(customers[i].name + " ");
+                    stringBuilder.Append(customers[i].lastname + " ");
+                    stringBuilder.Append(customers[i].birthdate.ToShortDateString()+" ");
+                    stringBuilder.Append(customers[i].age + " ");
+                    stringBuilder.Append(customers[i].isactive + " ");
+                    Console.WriteLine(stringBuilder.ToString());
+                    stringBuilder.Clear();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Bir Hata Oluştu: " + e);
+            }
+            Console.ReadKey();
         }
 
         public static void InsertCustomer()
         {
             IRepository<Customer> repository = new CustomerRepository();
             Customer customer = new Customer();
-            customer.name = "Murat";
-            customer.lastname = "Doğan";
-            customer.username = "muratdogan";
+            customer.name = "Merve";
+            customer.lastname = "Güneş";
+            customer.username = "mrvgunes";
             customer.password = "123456";
-            customer.birthdate = new DateTime(1998, 04, 12);
+            customer.birthdate = new DateTime(1979, 09, 17);
             customer.age = DateTime.Now.Year - customer.birthdate.Year;
             try
             {

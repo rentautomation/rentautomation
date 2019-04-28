@@ -8,6 +8,7 @@ namespace Rent.Model.Abstracts
 {
     public abstract class Member
     {
+        public Member() { }
         public int membernumber { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -15,6 +16,7 @@ namespace Rent.Model.Abstracts
         public string lastname { get; set; }
         public DateTime birthdate { get; set; }
         public int  age{ get; set; }
+        public int isactive { get; set; }
 
     }
 }

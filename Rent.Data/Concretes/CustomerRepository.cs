@@ -8,6 +8,7 @@ using Rent.Model.Concretes;
 using System.Data.Common;
 using System.Data.SqlClient;
 using Rent.Common.Concretes;
+using Rent.Model.Abstracts;
 
 namespace Rent.Data.Concretes
 {
@@ -18,9 +19,19 @@ namespace Rent.Data.Concretes
         { 
         }
 
-        public bool Delete(int id)
+        public bool Delete(int membernumber)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                MemberRepository repository = new MemberRepository();
+                repository.Delete(membernumber);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CustomersRepository::Delete:Error occured.", ex);
+            }
+            return true;
         }
 
         public bool Insert(Customer entity)
@@ -28,13 +39,21 @@ namespace Rent.Data.Concretes
 
             try
             {
+
+                //First Add Member
+                MemberRepository repository = new MemberRepository();
+                repository.Insert(entity);
+                //Get member
+                Member member = repository.SelectedByUsername(entity.username);
+
+                //Then add customer
                 var query = new StringBuilder();
-                query.Append("INSERT [dbo].[membertable] ");
-                query.Append("( [name], [lastname], [username], [password], [birthdate], [age] ) ");
+                query.Append("INSERT [dbo].[customertable] ");
+                query.Append("( [membernumber] ) ");
                 query.Append("VALUES ");
-                query.Append(
-                    "( @name, @lastname, @username, @password, @birthdate, @age ) ");
-                
+                query.Append("(@membernumber) ");
+
+
 
                 var commandText = query.ToString();
                 query.Clear();
@@ -42,12 +61,7 @@ namespace Rent.Data.Concretes
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
 
-                cmd.Parameters.Add("@name", entity.name);
-                cmd.Parameters.Add("@lastname", entity.lastname);
-                cmd.Parameters.Add("@username", entity.username);
-                cmd.Parameters.Add("@password", entity.password);
-                cmd.Parameters.Add("@birthdate", entity.birthdate);
-                cmd.Parameters.Add("@age", entity.age);
+                cmd.Parameters.Add("@membernumber", member.membernumber);
                 cmd.ExecuteNonQuery();
 
                 DBHelper.Close();
@@ -63,7 +77,101 @@ namespace Rent.Data.Concretes
 
         public IList<Customer> SelectAll()
         {
-            throw new NotImplementedException();
+            IList<Customer> customers = new List<Customer>();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT [username], [name], [lastname], [birthdate], [age], [isactive] ");
+                query.Append("FROM [dbo].[membertable] ");
+                query.Append("INNER JOIN [dbo].[customertable] ON ");
+                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
+
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        var customer = new Customer();
+
+                        customer.username = reader.GetString(0);
+                        customer.name = reader.GetString(1);
+                        customer.lastname = reader.GetString(2);
+                        customer.birthdate = reader.GetDateTime(3);
+                        customer.age = reader.GetInt32(4);
+                        customer.isactive = reader.GetInt32(5);
+                        customer.membernumber = 0;
+                        customer.password = "";
+                        customers.Add(customer);
+                    }
+                }
+                    
+
+                DBHelper.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CustomersRepository::SelectAll:Error occured.", ex);
+            }
+            return customers;
+        }
+
+
+        public Customer SelectedByUsername(string username)
+        {
+            Customer customer = new Customer();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT ");
+                query.Append("[membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
+                query.Append("FROM [dbo].[membertable] ");
+                query.Append("INSERT JOIN [dbo].[customertable] ON ");
+                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
+                query.Append("WHERE username = @username AND isactive = 1");
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+                cmd.Parameters.Add("@username", username);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+
+                        customer.membernumber = reader.GetInt32(0);
+                        customer.username = reader.GetString(1);
+                        customer.name = reader.GetString(2);
+                        customer.lastname = reader.GetString(3);
+                        customer.birthdate = reader.GetDateTime(4);
+                        customer.age = reader.GetInt32(5);
+                        customer.isactive = reader.GetInt32(6);
+                        customer.password = "";
+                    }
+                }
+
+
+                DBHelper.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CustomerRepository::SelectedByUser:Error occured.", ex);
+            }
+
+
+            return customer;
         }
 
         public Customer SelectedByNumber(int id)

@@ -47,6 +47,7 @@
     <Compile Include="Concretes\Customer.cs" />
     <Compile Include="Concretes\Personnel.cs" />
     <Compile Include="Concretes\RentModel.cs" />
+    <Compile Include="Concretes\Rezerv.cs" />
     <Compile Include="Concretes\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

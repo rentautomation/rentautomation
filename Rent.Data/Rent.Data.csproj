@@ -54,8 +54,10 @@
     <Compile Include="Concretes\AddressRepository.cs" />
     <Compile Include="Concretes\CompanyRepository.cs" />
     <Compile Include="Concretes\CustomerRepository.cs" />
+    <Compile Include="Concretes\MemberRepository.cs" />
     <Compile Include="Concretes\PersonnelRepository.cs" />
     <Compile Include="Concretes\RentRepository.cs" />
+    <Compile Include="Concretes\RezervRepository.cs" />
     <Compile Include="Concretes\VehicleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
