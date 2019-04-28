@@ -84,7 +84,7 @@ namespace Rent.Data.Concretes
                 query.Append("SELECT [username], [name], [lastname], [birthdate], [age], [isactive] ");
                 query.Append("FROM [dbo].[membertable] ");
                 query.Append("INNER JOIN [dbo].[customertable] ON ");
-                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
+                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber ");
                 query.Append("WHERE [isactive] = 1");
 
 
@@ -132,11 +132,11 @@ namespace Rent.Data.Concretes
             {
                 var query = new StringBuilder();
                 query.Append("SELECT ");
-                query.Append("[customernumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
+                query.Append("[dbo].[customertable].[customernumber], [dbo].[membertable].[membernumber], [name], [lastname], [username], [birthdate], [age], [isactive] ");
                 query.Append("FROM [dbo].[membertable] ");
-                query.Append("INSERT JOIN [dbo].[customertable] ON ");
-                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
-                query.Append("WHERE username = @username AND isactive = 1");
+                query.Append("INNER JOIN [dbo].[customertable] ON ");
+                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber ");
+                query.Append("WHERE [dbo].[membertable].[username] = @username AND isactive = 1 ");
 
                 var commandText = query.ToString();
                 query.Clear();
@@ -183,11 +183,11 @@ namespace Rent.Data.Concretes
             {
                 var query = new StringBuilder();
                 query.Append("SELECT ");
-                query.Append("[customernumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
+                query.Append("[customernumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive] ");
                 query.Append("FROM [dbo].[membertable] ");
                 query.Append("INSERT JOIN [dbo].[customertable] ON ");
-                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
-                query.Append("WHERE [dbo].[customertable].[customernumber] = @customernumber");
+                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber ");
+                query.Append("WHERE [dbo].[customertable].[customernumber] = @customernumber ");
 
                 var commandText = query.ToString();
                 query.Clear();

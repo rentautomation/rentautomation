@@ -10,8 +10,10 @@ namespace Rent.Model.Concretes
     {
         public int addressnumber { get; set; }
         public string district { get; set; }
+        public string neighborhood { get; set; }
         public string street { get; set; }
         public string city { get; set; }
         public int buildnumber { get; set; }
+        public int isactive { get; set; }
     }
 }

@@ -15,7 +15,100 @@ namespace Test
         {
 
             //InsertCustomer();
-            GetAllCustomer();
+            //GetAllCustomer();
+            //AddAddress();
+            //DeleteAddress();
+            //GetCustomerWithUsername();
+            GetAddressByAddressnumber();
+        }
+
+        public static void GetAddressByAddressnumber()
+        {
+            AddressRepository repository = new AddressRepository();
+            StringBuilder stringBuilder = new StringBuilder();
+            try
+            {
+                Address address = repository.SelectedByNumber(1);
+                stringBuilder.Append(address.neighborhood + " ");
+                stringBuilder.Append(address.street + " ");
+                stringBuilder.Append(address.district + " ");
+                stringBuilder.Append(address.city + " ");
+                stringBuilder.Append(address.buildnumber + " ");
+                stringBuilder.Append(address.isactive + " ");
+                Console.WriteLine(stringBuilder.ToString());
+                stringBuilder.Clear();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Bir Hata Oluştu: " + e);
+            }
+            Console.ReadKey();
+        }
+
+        public static void GetCustomerWithUsername()
+        {
+            CustomerRepository repository = new CustomerRepository();
+            StringBuilder stringBuilder = new StringBuilder();
+            try
+            {
+                Customer customer = repository.SelectedByUsername("oguzhan");
+                    stringBuilder.Append(customer.username + " ");
+                    stringBuilder.Append(customer.name + " ");
+                    stringBuilder.Append(customer.lastname + " ");
+                    stringBuilder.Append(customer.birthdate.ToShortDateString() + " ");
+                    stringBuilder.Append(customer.age + " ");
+                    stringBuilder.Append(customer.isactive + " ");
+                    Console.WriteLine(stringBuilder.ToString());
+                    stringBuilder.Clear();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Bir Hata Oluştu: " + e);
+            }
+            Console.ReadKey();
+        }
+
+        public static void DeleteAddress()
+        {
+            IRepository<Address> repository = new AddressRepository();
+            try
+            {
+                repository.Delete(1);
+                Console.WriteLine("Silme başarılı");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Bir Hata Oluştu: " + e);
+            }
+            Console.ReadKey();
+
+        }
+
+        public static void AddAddress()
+        {
+            IRepository<Address> repository = new AddressRepository();
+            Address address = new Address()
+            {
+                neighborhood = "İstiklal Mahallesi",
+                street = "Palmiye Caddesi",
+                city = "Manisa",
+                district = "Turgutlu",
+                buildnumber = 25,
+                isactive  = 1
+            };
+
+            try
+            {
+                repository.Insert(address);
+
+                Console.WriteLine("Ekleme başarılı");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Bir Hata Oluştu: " + e);
+            }
+            Console.ReadKey();
+
         }
 
         public static void GetAllCustomer()

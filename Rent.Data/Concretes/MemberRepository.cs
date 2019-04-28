@@ -1,5 +1,6 @@
 ﻿using Rent.Common.Concretes;
 using Rent.Data.Abstracts;
+using Rent.Data.Data;
 using Rent.Model.Abstracts;
 using Rent.Model.Concretes;
 using System;
@@ -16,22 +17,9 @@ namespace Rent.Data.Concretes
         {
             try
             {
-                var query = new StringBuilder();
-                query.Append("UPDATE [dbo].[membertable] ");
-                query.Append("SET [isactive] = 0 ");
-                query.Append("WHERE [membernumber] = @membernumber ");
-
-                var commandText = query.ToString();
-                query.Clear();
-
-                DBHelper.Open();
-                var cmd = DBHelper.GetSqlCommand(commandText);
-
-                cmd.Parameters.Add("@membernumber", membernumber);
-                cmd.ExecuteNonQuery();
-
-                DBHelper.Close();
-            }catch (Exception ex)
+                CommonRepository.Delete(DataTypes.membertable, DataTypeNumbers.membernumber, membernumber);
+            }
+            catch (Exception ex)
             {
                 throw new Exception("MemberRepository::Delete:Error occured.", ex);
             }
@@ -57,12 +45,12 @@ namespace Rent.Data.Concretes
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
 
-                cmd.Parameters.Add("@name", entity.name);
-                cmd.Parameters.Add("@lastname", entity.lastname);
-                cmd.Parameters.Add("@username", entity.username);
-                cmd.Parameters.Add("@password", entity.password);
-                cmd.Parameters.Add("@birthdate", entity.birthdate);
-                cmd.Parameters.Add("@age", entity.age);
+                cmd.Parameters.AddWithValue("@name", entity.name);
+                cmd.Parameters.AddWithValue("@lastname", entity.lastname);
+                cmd.Parameters.AddWithValue("@username", entity.username);
+                cmd.Parameters.AddWithValue("@password", entity.password);
+                cmd.Parameters.AddWithValue("@birthdate", entity.birthdate);
+                cmd.Parameters.AddWithValue("@age", entity.age);
                 cmd.ExecuteNonQuery();
 
                 DBHelper.Close();
@@ -96,7 +84,7 @@ namespace Rent.Data.Concretes
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.AddWithValue("@username", username);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)

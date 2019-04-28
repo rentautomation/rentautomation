@@ -12,5 +12,6 @@ namespace Rent.Model.Concretes
         public int membernumber { get; set; }
         public int vehiclenumber { get; set; }
         public DateTime rezervdate { get; set; }
+        public int isactive { get; set; }
     }
 }

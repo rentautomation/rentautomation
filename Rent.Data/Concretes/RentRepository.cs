@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Rent.Common.Concretes;
 using Rent.Data.Abstracts;
+using Rent.Data.Data;
 using Rent.Model.Concretes;
 
 namespace Rent.Data.Concretes
@@ -15,21 +16,7 @@ namespace Rent.Data.Concretes
         {
             try
             {
-                var query = new StringBuilder();
-                query.Append("UPDATE [dbo].[renttable] ");
-                query.Append("SET [isactive] = 0 ");
-                query.Append("WHERE [rentnumber] = @rentnumber");
-
-                var commandText = query.ToString();
-                query.Clear();
-
-                DBHelper.Open();
-                var cmd = DBHelper.GetSqlCommand(commandText);
-
-                cmd.Parameters.Add("@rentnumber", rentnumber);
-                cmd.ExecuteNonQuery();
-
-                DBHelper.Close();
+                CommonRepository.Delete(DataTypes.renttable, DataTypeNumbers.rentnumber, rentnumber);
             }
             catch (Exception ex)
             {
@@ -56,14 +43,14 @@ namespace Rent.Data.Concretes
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
 
-                cmd.Parameters.Add("@membernumber", entity.membernumber);
-                cmd.Parameters.Add("@vehiclenumber", entity.vehiclenumber);
-                cmd.Parameters.Add("@rentdatebegin", entity.rentdatebegin);
-                cmd.Parameters.Add("@rentdateend", entity.rentdateend);
-                cmd.Parameters.Add("@beginkm", entity.beginkm);
-                cmd.Parameters.Add("@endkm", entity.endkm);
-                cmd.Parameters.Add("@totalprice", entity.totalprice);
-                cmd.Parameters.Add("@isactive", entity.isactive);
+                cmd.Parameters.AddWithValue("@membernumber", entity.membernumber);
+                cmd.Parameters.AddWithValue("@vehiclenumber", entity.vehiclenumber);
+                cmd.Parameters.AddWithValue("@rentdatebegin", entity.rentdatebegin);
+                cmd.Parameters.AddWithValue("@rentdateend", entity.rentdateend);
+                cmd.Parameters.AddWithValue("@beginkm", entity.beginkm);
+                cmd.Parameters.AddWithValue("@endkm", entity.endkm);
+                cmd.Parameters.AddWithValue("@totalprice", entity.totalprice);
+                cmd.Parameters.AddWithValue("@isactive", entity.isactive);
                 cmd.ExecuteNonQuery();
 
                 DBHelper.Close();
@@ -141,7 +128,7 @@ namespace Rent.Data.Concretes
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@membernumber", membernumber);
+                cmd.Parameters.AddWithValue("@membernumber", membernumber);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -190,7 +177,7 @@ namespace Rent.Data.Concretes
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@rentnumber", rentnumber);
+                cmd.Parameters.AddWithValue("@rentnumber", rentnumber);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -229,14 +216,14 @@ namespace Rent.Data.Concretes
                 var query = new StringBuilder();
                 query.Append("SELECT [rentnumber], [membernumber], [vehiclenumber], [rentdatebegin], [rentdateend], [beginkm], [endkm], [totalprice], [isactive] ");
                 query.Append("FROM [dbo].[renttable] ");
-                query.Append("WHERE [vehiclenumber] = @vehiclenumber [isactive] = 1 ");
+                query.Append("WHERE [vehiclenumber] = @vehiclenumber AND [isactive] = 1 ");
 
                 var commandText = query.ToString();
                 query.Clear();
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@vehiclenumber", vehiclenumber);
+                cmd.Parameters.AddWithValue("@vehiclenumber", vehiclenumber);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)

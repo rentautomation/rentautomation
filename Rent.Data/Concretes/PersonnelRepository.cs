@@ -120,7 +120,7 @@ namespace Rent.Data.Concretes
 
         public Personnel SelectedByUsername(string username)
         {
-            Personnel personnel = new Personnel();
+            Personnel personnel = null;
             try
             {
                 var query = new StringBuilder();
@@ -143,6 +143,8 @@ namespace Rent.Data.Concretes
                 {
                     while (reader.Read())
                     {
+                        personnel = new Personnel();
+
                         personnel.personnelnumber = reader.GetInt32(0);
                         personnel.membernumber = reader.GetInt32(1);
                         personnel.username = reader.GetString(2);
@@ -171,16 +173,16 @@ namespace Rent.Data.Concretes
 
         public Personnel SelectedByNumber(int personnelnumber)
         {
-            Personnel personnel = new Personnel();
+            Personnel personnel = null;
             try
             {
                 var query = new StringBuilder();
                 query.Append("SELECT ");
-                query.Append("[personnelnumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
+                query.Append("[personnelnumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive] ");
                 query.Append("FROM [dbo].[membertable] ");
                 query.Append("INSERT JOIN [dbo].[personneltable] ON ");
-                query.Append("[dbo].[personneltable].membernumber = [dbo].[membertable].membernumber");
-                query.Append("WHERE [dbo].[personneltable].[personnelnumber] = @personnelnumber");
+                query.Append("[dbo].[personneltable].membernumber = [dbo].[membertable].membernumber ");
+                query.Append("WHERE [dbo].[personneltable].[personnelnumber] = @personnelnumber ");
 
                 var commandText = query.ToString();
                 query.Clear();
@@ -194,6 +196,7 @@ namespace Rent.Data.Concretes
                 {
                     while (reader.Read())
                     {
+                        personnel = new Personnel();
                         personnel.personnelnumber = reader.GetInt32(0);
                         personnel.membernumber = reader.GetInt32(1);
                         personnel.username = reader.GetString(2);

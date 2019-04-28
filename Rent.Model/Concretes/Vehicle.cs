@@ -15,11 +15,12 @@ namespace Rent.Model.Concretes
         public int minimumagelimit { get; set; }
         public int dailykmlimit { get; set; }
         public int currentkm { get; set; }
-        public bool airbag { get; set; }
+        public int airbag { get; set; }
         public float trunkvolume { get; set; }
         public int seatcount { get; set; }
         public decimal dailyrentprice { get; set; }
         public int companynumber { get; set; }
+        public int isactive { get; set; }
 
     }
 }
