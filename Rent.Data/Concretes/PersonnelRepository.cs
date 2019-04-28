@@ -12,12 +12,14 @@ namespace Rent.Data.Concretes
 {
     public class PersonnelRepository : IRepository<Personnel>
     {
-        public bool Delete(int membernumber)
+        public bool Delete(int personnelnumber)
         {
             try
             {
+                Personnel personnel = SelectedByNumber(personnelnumber);
+
                 MemberRepository repository = new MemberRepository();
-                repository.Delete(membernumber);
+                repository.Delete(personnel.membernumber);
             }
             catch (Exception ex)
             {
@@ -75,7 +77,8 @@ namespace Rent.Data.Concretes
                 query.Append("SELECT [username], [name], [lastname], [birthdate], [age], [isactive], [companynumber] ");
                 query.Append("FROM [dbo].[membertable] ");
                 query.Append("INNER JOIN [dbo].[personneltable] ON ");
-                query.Append("[personneltable].membernumber = [membertable].membernumber");
+                query.Append("[personneltable].membernumber = [membertable].membernumber ");
+                query.Append("WHERE [isactive] = 1 ");
 
 
                 var commandText = query.ToString();
@@ -122,11 +125,11 @@ namespace Rent.Data.Concretes
             {
                 var query = new StringBuilder();
                 query.Append("SELECT ");
-                query.Append("[membernumber], [name], [lastname], [username], [birthdate], [age], [isactive], [companynumber]");
+                query.Append("[personnelnumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive], [companynumber] ");
                 query.Append("FROM [dbo].[membertable] ");
                 query.Append("INSERT JOIN [dbo].[personneltable] ON ");
-                query.Append("[dbo].[personneltable].membernumber = [dbo].[membertable].membernumber");
-                query.Append("WHERE username = @username AND isactive = 1");
+                query.Append("[dbo].[personneltable].membernumber = [dbo].[membertable].membernumber ");
+                query.Append("WHERE username = @username AND isactive = 1 ");
 
                 var commandText = query.ToString();
                 query.Clear();
@@ -140,15 +143,15 @@ namespace Rent.Data.Concretes
                 {
                     while (reader.Read())
                     {
-
-                        personnel.membernumber = reader.GetInt32(0);
-                        personnel.username = reader.GetString(1);
-                        personnel.name = reader.GetString(2);
-                        personnel.lastname = reader.GetString(3);
-                        personnel.birthdate = reader.GetDateTime(4);
-                        personnel.age = reader.GetInt32(5);
-                        personnel.isactive = reader.GetInt32(6);
-                        personnel.companynumber = reader.GetInt32(7);
+                        personnel.personnelnumber = reader.GetInt32(0);
+                        personnel.membernumber = reader.GetInt32(1);
+                        personnel.username = reader.GetString(2);
+                        personnel.name = reader.GetString(3);
+                        personnel.lastname = reader.GetString(4);
+                        personnel.birthdate = reader.GetDateTime(5);
+                        personnel.age = reader.GetInt32(6);
+                        personnel.isactive = reader.GetInt32(7);
+                        personnel.companynumber = reader.GetInt32(8);
                         personnel.password = "";
                     }
                 }
@@ -166,9 +169,53 @@ namespace Rent.Data.Concretes
             return personnel;
         }
 
-        public Personnel SelectedByNumber(int id)
+        public Personnel SelectedByNumber(int personnelnumber)
         {
-            throw new NotImplementedException();
+            Personnel personnel = new Personnel();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT ");
+                query.Append("[personnelnumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
+                query.Append("FROM [dbo].[membertable] ");
+                query.Append("INSERT JOIN [dbo].[personneltable] ON ");
+                query.Append("[dbo].[personneltable].membernumber = [dbo].[membertable].membernumber");
+                query.Append("WHERE [dbo].[personneltable].[personnelnumber] = @personnelnumber");
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+                cmd.Parameters.Add("@personnelnumber", personnelnumber);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        personnel.personnelnumber = reader.GetInt32(0);
+                        personnel.membernumber = reader.GetInt32(1);
+                        personnel.username = reader.GetString(2);
+                        personnel.name = reader.GetString(3);
+                        personnel.lastname = reader.GetString(4);
+                        personnel.birthdate = reader.GetDateTime(5);
+                        personnel.age = reader.GetInt32(6);
+                        personnel.isactive = reader.GetInt32(7);
+                        personnel.password = "";
+                    }
+                }
+
+
+                DBHelper.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CustomerRepository::SelectedByUser:Error occured.", ex);
+            }
+
+
+            return personnel;
         }
 
         public bool Update(Personnel entity)

@@ -19,7 +19,7 @@ namespace Rent.Data.Concretes
                 var query = new StringBuilder();
                 query.Append("UPDATE [dbo].[membertable] ");
                 query.Append("SET [isactive] = 0 ");
-                query.Append("WHERE membernumber = @membernumber");
+                query.Append("WHERE [membernumber] = @membernumber ");
 
                 var commandText = query.ToString();
                 query.Clear();
@@ -89,7 +89,7 @@ namespace Rent.Data.Concretes
                 query.Append("SELECT ");
                 query.Append("[membernumber], [name], [lastname], [username], [birthdate], [age], [isactive] ");
                 query.Append("FROM [dbo].[membertable] ");
-                query.Append("WHERE username = @username AND isactive = 1");
+                query.Append("WHERE username = @username AND isactive = 1 ");
 
                 var commandText = query.ToString();
                 query.Clear();

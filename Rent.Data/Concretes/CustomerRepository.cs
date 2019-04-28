@@ -85,6 +85,7 @@ namespace Rent.Data.Concretes
                 query.Append("FROM [dbo].[membertable] ");
                 query.Append("INNER JOIN [dbo].[customertable] ON ");
                 query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
+                query.Append("WHERE [isactive] = 1");
 
 
                 var commandText = query.ToString();
@@ -131,7 +132,7 @@ namespace Rent.Data.Concretes
             {
                 var query = new StringBuilder();
                 query.Append("SELECT ");
-                query.Append("[membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
+                query.Append("[customernumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
                 query.Append("FROM [dbo].[membertable] ");
                 query.Append("INSERT JOIN [dbo].[customertable] ON ");
                 query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
@@ -150,13 +151,14 @@ namespace Rent.Data.Concretes
                     while (reader.Read())
                     {
 
-                        customer.membernumber = reader.GetInt32(0);
-                        customer.username = reader.GetString(1);
-                        customer.name = reader.GetString(2);
-                        customer.lastname = reader.GetString(3);
-                        customer.birthdate = reader.GetDateTime(4);
-                        customer.age = reader.GetInt32(5);
-                        customer.isactive = reader.GetInt32(6);
+                        customer.customernumber = reader.GetInt32(0);
+                        customer.membernumber = reader.GetInt32(1);
+                        customer.username = reader.GetString(2);
+                        customer.name = reader.GetString(3);
+                        customer.lastname = reader.GetString(4);
+                        customer.birthdate = reader.GetDateTime(5);
+                        customer.age = reader.GetInt32(6);
+                        customer.isactive = reader.GetInt32(7);
                         customer.password = "";
                     }
                 }
@@ -174,9 +176,53 @@ namespace Rent.Data.Concretes
             return customer;
         }
 
-        public Customer SelectedByNumber(int id)
+        public Customer SelectedByNumber(int customernumber)
         {
-            throw new NotImplementedException();
+            Customer customer = new Customer();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT ");
+                query.Append("[customernumber], [membernumber], [name], [lastname], [username], [birthdate], [age], [isactive]");
+                query.Append("FROM [dbo].[membertable] ");
+                query.Append("INSERT JOIN [dbo].[customertable] ON ");
+                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber");
+                query.Append("WHERE [dbo].[customertable].[customernumber] = @customernumber");
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+                cmd.Parameters.Add("@customernumber", customernumber);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        customer.customernumber = reader.GetInt32(0);
+                        customer.membernumber = reader.GetInt32(1);
+                        customer.username = reader.GetString(2);
+                        customer.name = reader.GetString(3);
+                        customer.lastname = reader.GetString(4);
+                        customer.birthdate = reader.GetDateTime(5);
+                        customer.age = reader.GetInt32(6);
+                        customer.isactive = reader.GetInt32(7);
+                        customer.password = "";
+                    }
+                }
+
+
+                DBHelper.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CustomerRepository::SelectedByUser:Error occured.", ex);
+            }
+
+
+            return customer;
         }
 
         public bool Update(Customer entity)

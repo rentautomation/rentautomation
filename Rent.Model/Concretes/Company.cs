@@ -14,5 +14,6 @@ namespace Rent.Model.Concretes
         public int addressnumber { get; set; }
         public int vehiclecount { get; set; }
         public int rate { get; set; }
+        public int isactive { get; set; }
     }
 }

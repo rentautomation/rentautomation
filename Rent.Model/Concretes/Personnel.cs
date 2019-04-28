@@ -9,6 +9,7 @@ namespace Rent.Model.Concretes
 {
     public class Personnel: Member
     {
+        public int personnelnumber { get; set; }
         public int companynumber { get; set; }
     }
 }

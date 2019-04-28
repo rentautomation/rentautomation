@@ -9,6 +9,6 @@ namespace Rent.Model.Concretes
 {
     public class Customer: Member
     {
-
+        public int customernumber { get; set; }
     }
 }
