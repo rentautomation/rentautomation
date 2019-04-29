@@ -127,7 +127,7 @@ namespace Rent.Data.Concretes
 
         public Customer SelectedByUsername(string username)
         {
-            Customer customer = new Customer();
+            Customer customer = null;
             try
             {
                 var query = new StringBuilder();
@@ -150,7 +150,60 @@ namespace Rent.Data.Concretes
                 {
                     while (reader.Read())
                     {
+                        customer = new Customer();
+                        customer.customernumber = reader.GetInt32(0);
+                        customer.membernumber = reader.GetInt32(1);
+                        customer.username = reader.GetString(2);
+                        customer.name = reader.GetString(3);
+                        customer.lastname = reader.GetString(4);
+                        customer.birthdate = reader.GetDateTime(5);
+                        customer.age = reader.GetInt32(6);
+                        customer.isactive = reader.GetInt32(7);
+                        customer.password = "";
+                    }
+                }
 
+
+                DBHelper.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CustomerRepository::SelectedByUser:Error occured.", ex);
+            }
+
+
+            return customer;
+        }
+
+        public Customer SelectedByUsername(string username, string password)
+        {
+            Customer customer = null;
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT ");
+                query.Append("[dbo].[customertable].[customernumber], [dbo].[membertable].[membernumber], [name], [lastname], [username], [birthdate], [age], [isactive] ");
+                query.Append("FROM [dbo].[membertable] ");
+                query.Append("INNER JOIN [dbo].[customertable] ON ");
+                query.Append("[dbo].[customertable].membernumber = [dbo].[membertable].membernumber ");
+                query.Append("WHERE [dbo].[membertable].[username] = @username AND " +
+                    "[dbo].[membertable].[password] = @password AND isactive = 1 ");
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        customer = new Customer();
                         customer.customernumber = reader.GetInt32(0);
                         customer.membernumber = reader.GetInt32(1);
                         customer.username = reader.GetString(2);

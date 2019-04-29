@@ -21,6 +21,7 @@ namespace Rent.Model.Concretes
         public decimal dailyrentprice { get; set; }
         public int companynumber { get; set; }
         public int isactive { get; set; }
+        public int istaken { get; set; }
 
     }
 }

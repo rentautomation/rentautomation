@@ -254,11 +254,90 @@ namespace Rent.Data.Concretes
             return rent;
         }
 
-        
+        public RentModel SelectedByVehicleAndMember(int vehiclenumber, int membernumber)
+        {
+            RentModel rent = new RentModel();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT [rentnumber], [membernumber], [vehiclenumber], [rentdatebegin], [rentdateend], [beginkm], [endkm], [totalprice], [isactive] ");
+                query.Append("FROM [dbo].[renttable] ");
+                query.Append("WHERE [vehiclenumber] = @vehiclenumber AND [membernumber] = @membernumber AND [isactive] = 1 ");
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+                cmd.Parameters.AddWithValue("@vehiclenumber", vehiclenumber);
+                cmd.Parameters.AddWithValue("@membernumber", membernumber);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        rent.rentnumber = reader.GetInt32(0);
+                        rent.membernumber = reader.GetInt32(1);
+                        rent.vehiclenumber = reader.GetInt32(2);
+                        rent.rentdatebegin = reader.GetDateTime(3);
+                        rent.rentdateend = reader.GetDateTime(4);
+                        rent.beginkm = reader.GetInt32(5);
+                        rent.endkm = reader.GetInt32(6);
+                        rent.totalprice = reader.GetDecimal(7);
+                        rent.isactive = reader.GetInt32(8);
+                    }
+                }
+
+
+                DBHelper.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("RentRepository::SelectedByVehicleAndMember:Error occured.", ex);
+            }
+
+
+            return rent;
+        }
 
         public bool Update(RentModel entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("UPADET [dbo].[renttable] ");
+                query.Append("SET [membernumber] =  @membernumber, [vehiclenumber] =  @vehiclenumber," +
+                    " [rentdatebegin] =  @rentdatebegin, [rentdateend] =  @rentdateend, [beginkm] = @beginkm," +
+                    " [endkm] = @endkm, [totalprice] = @totalprice, [isactive] = @isactive ");
+                query.Append("WHERE [rentnumber] = @rentnumber ");
+
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+
+                cmd.Parameters.AddWithValue("@membernumber", entity.membernumber);
+                cmd.Parameters.AddWithValue("@vehiclenumber", entity.vehiclenumber);
+                cmd.Parameters.AddWithValue("@rentdatebegin", entity.rentdatebegin);
+                cmd.Parameters.AddWithValue("@rentdateend", entity.rentdateend);
+                cmd.Parameters.AddWithValue("@beginkm", entity.beginkm);
+                cmd.Parameters.AddWithValue("@endkm", entity.endkm);
+                cmd.Parameters.AddWithValue("@totalprice", entity.totalprice);
+                cmd.Parameters.AddWithValue("@isactive", entity.isactive);
+                cmd.Parameters.AddWithValue("@rentnumber", entity.rentnumber);
+                cmd.ExecuteNonQuery();
+
+                DBHelper.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("RentRepository::Update:Error occured.", ex);
+            }
+            return true;
         }
     }
 }

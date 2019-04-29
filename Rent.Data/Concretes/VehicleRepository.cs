@@ -10,7 +10,7 @@ using Rent.Model.Concretes;
 
 namespace Rent.Data.Concretes
 {
-    class VehicleRepository : IRepository<Vehicle>
+    public class VehicleRepository : IRepository<Vehicle>
     {
         public bool Delete(int vehiclenumber)
         {
@@ -33,12 +33,12 @@ namespace Rent.Data.Concretes
                 query.Append("INSERT [dbo].[vehicletable] ");
                 query.Append("( [name], [model], [licenseage], [minimumagelimit]," +
                     " [dailykmlimit], [currentkm], [airbag], [trunkvolume], [seatcount]," +
-                    " [dailyrentprice], [companynumber], [isactive]) ");
+                    " [dailyrentprice], [companynumber], [isactive], [istaken]) ");
                 query.Append("VALUES ");
                 query.Append(
                     "( @name, @model, @licenseage, @minimumagelimit," +
                     " @dailykmlimit, @currentkm, @airbag, @trunkvolume, @seatcount" +
-                    " @dailyrentprice, @companynumber, @isactive) ");
+                    " @dailyrentprice, @companynumber, @isactive, @istaken) ");
 
 
                 var commandText = query.ToString();
@@ -59,6 +59,9 @@ namespace Rent.Data.Concretes
                 cmd.Parameters.AddWithValue("@dailyrentprice", entity.dailyrentprice);
                 cmd.Parameters.AddWithValue("@companynumber", entity.companynumber);
                 cmd.Parameters.AddWithValue("@isactive", entity.isactive);
+                cmd.Parameters.AddWithValue("@istaken", entity.istaken);
+
+                cmd.ExecuteNonQuery();
 
                 DBHelper.Close();
 
@@ -79,7 +82,7 @@ namespace Rent.Data.Concretes
                 query.Append("SELECT ");
                 query.Append("[vehiclenumber], [name], [model], [licenseage], [minimumagelimit]," +
                     " [dailykmlimit], [currentkm], [airbag], [trunkvolume], [seatcount]," +
-                    " [dailyrentprice], [companynumber], [isactive] ");
+                    " [dailyrentprice], [companynumber], [isactive], [istaken] ");
                 query.Append("FROM [dbo].[vehicletable] ");
                 query.Append("WHERE [isactive] = 1 ");
 
@@ -110,6 +113,7 @@ namespace Rent.Data.Concretes
                         vehicle.dailyrentprice = reader.GetDecimal(10);
                         vehicle.companynumber = reader.GetInt32(11);
                         vehicle.isactive = reader.GetInt32(12);
+                        vehicle.istaken = reader.GetInt32(13);
 
                         vehicles.Add(vehicle);
                     }
@@ -128,14 +132,14 @@ namespace Rent.Data.Concretes
 
         public Vehicle SelectedByNumber(int vehiclenumber)
         {
-            var vehicle = new Vehicle();
+            Vehicle vehicle = null;
             try
             {
                 var query = new StringBuilder();
                 query.Append("SELECT ");
                 query.Append("[vehiclenumber], [name], [model], [licenseage], [minimumagelimit]," +
                     " [dailykmlimit], [currentkm], [airbag], [trunkvolume], [seatcount]," +
-                    " [dailyrentprice], [companynumber], [isactive] ");
+                    " [dailyrentprice], [companynumber], [isactive], [istaken] ");
                 query.Append("FROM [dbo].[vehicletable] ");
                 query.Append("WHERE [isactive] = 1 AND [vehiclenumber] = @vehiclenumber");
 
@@ -152,8 +156,8 @@ namespace Rent.Data.Concretes
                 {
                     while (reader.Read())
                     {
-                        
 
+                        vehicle = new Vehicle();
                         vehicle.vehiclenumber = reader.GetInt32(0);
                         vehicle.name = reader.GetString(1);
                         vehicle.model = reader.GetString(2);
@@ -167,6 +171,7 @@ namespace Rent.Data.Concretes
                         vehicle.dailyrentprice = reader.GetDecimal(10);
                         vehicle.companynumber = reader.GetInt32(11);
                         vehicle.isactive = reader.GetInt32(12);
+                        vehicle.istaken = reader.GetInt32(13);
 
                     }
                 }
@@ -191,7 +196,7 @@ namespace Rent.Data.Concretes
                 query.Append("SELECT ");
                 query.Append("[vehiclenumber], [name], [model], [licenseage], [minimumagelimit]," +
                     " [dailykmlimit], [currentkm], [airbag], [trunkvolume], [seatcount]," +
-                    " [dailyrentprice], [companynumber], [isactive] ");
+                    " [dailyrentprice], [companynumber], [isactive], [istaken] ");
                 query.Append("FROM [dbo].[vehicletable] ");
                 query.Append("WHERE [isactive] = 1 AND [companynumber] = @companynumber");
 
@@ -223,6 +228,7 @@ namespace Rent.Data.Concretes
                         vehicle.dailyrentprice = reader.GetDecimal(10);
                         vehicle.companynumber = reader.GetInt32(11);
                         vehicle.isactive = reader.GetInt32(12);
+                        vehicle.istaken = reader.GetInt32(13);
 
                     }
                 }
@@ -238,9 +244,88 @@ namespace Rent.Data.Concretes
             return vehicle;
         }
 
+        public bool VehicleIsTaken(int vehiclenumber)
+        {
+            bool istaken = false;
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT ");
+                query.Append("[istaken] ");
+                query.Append("FROM [dbo].[vehicletable] ");
+                query.Append("WHERE [vehiclenumber] = @vehiclenumber AND [isactive] = 1");
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+                cmd.Parameters.AddWithValue("@vehiclenumber", vehiclenumber);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        istaken = reader.GetInt32(13) == 1 ? true : false;
+                    }
+                }
+
+
+                DBHelper.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("VehicleRepository::VehichleIsTaken:Error occured.", ex);
+            }
+
+            return istaken;
+        }
+
         public bool Update(Vehicle entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("UPDATE [dbo].[vehicletable] ");
+                query.Append("SET [name] = @name, [model] =  @model, [licenseage]= @licenseage, [minimumagelimit] = @minimumagelimit," +
+                    " [dailykmlimit] = @dailykmlimit, [currentkm] =  @currentkm, [airbag] = @airbag, [trunkvolume] =  @trunkvolume, [seatcount] = @seatcount," +
+                    " [dailyrentprice] = @dailyrentprice, [companynumber] = @companynumber, [isactive] =  @isactive, [istaken]= @istaken ");
+                query.Append("WHERE [vehiclenumber] = @vehiclenumber ");
+                
+
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+
+                cmd.Parameters.AddWithValue("@name", entity.name);
+                cmd.Parameters.AddWithValue("@model", entity.model);
+                cmd.Parameters.AddWithValue("@licenseage", entity.licenseage);
+                cmd.Parameters.AddWithValue("@minimumagelimit", entity.minimumagelimit);
+                cmd.Parameters.AddWithValue("@dailykmlimit", entity.dailykmlimit);
+                cmd.Parameters.AddWithValue("@currentkm", entity.currentkm);
+                cmd.Parameters.AddWithValue("@airbag", entity.airbag);
+                cmd.Parameters.AddWithValue("@trunkvolume", entity.trunkvolume);
+                cmd.Parameters.AddWithValue("@seatcount", entity.seatcount);
+                cmd.Parameters.AddWithValue("@dailyrentprice", entity.dailyrentprice);
+                cmd.Parameters.AddWithValue("@companynumber", entity.companynumber);
+                cmd.Parameters.AddWithValue("@isactive", entity.isactive);
+                cmd.Parameters.AddWithValue("@istaken", entity.istaken);
+                cmd.Parameters.AddWithValue("@vehiclenumber", entity.vehiclenumber);
+
+                cmd.ExecuteNonQuery();
+
+                DBHelper.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("VehicleRepository::Update:Error occured.", ex);
+            }
+            return true;
         }
     }
 }

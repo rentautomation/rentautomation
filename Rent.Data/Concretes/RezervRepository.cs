@@ -148,6 +148,54 @@ namespace Rent.Data.Concretes
             return rezerv;
         }
 
+        public Rezerv SelectedByVehicleAndMember(int vehiclenumber, int membernumber)
+        {
+            var rezerv = new Rezerv();
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("SELECT  ");
+                query.Append("[rezervnumber], [membernumber], [vehiclenumber], [rezervdate],  [isactive] ");
+                query.Append("FROM [dbo].[rezervtable] ");
+                query.Append("WHERE [vehiclenumber] = @vehiclenumber AND [membernumber] = @membernumber AND [isactive] = 1 ");
+
+                var commandText = query.ToString();
+                query.Clear();
+
+                DBHelper.Open();
+                var cmd = DBHelper.GetSqlCommand(commandText);
+                cmd.Parameters.AddWithValue("@vehiclenumber", vehiclenumber);
+                cmd.Parameters.AddWithValue("@membernumber", membernumber);
+
+
+                
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+
+
+                        rezerv.rezervnumber = reader.GetInt32(0);
+                        rezerv.membernumber = reader.GetInt32(1);
+                        rezerv.vehiclenumber = reader.GetInt32(2);
+                        rezerv.rezervdate = reader.GetDateTime(3);
+                        rezerv.isactive = reader.GetInt32(4);
+
+                    }
+                }
+
+
+                DBHelper.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CompanyRepository::SelectAll:Error occured.", ex);
+            }
+            return rezerv;
+        }
+
         public bool Update(Rezerv entity)
         {
             throw new NotImplementedException();
