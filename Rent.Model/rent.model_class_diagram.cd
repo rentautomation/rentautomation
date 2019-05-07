@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rent.Model.Abstracts.Member" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAgAQAAABAAAABEAAAAEAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Abstracts\Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Model.Concretes.Address" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAEAAAAAAAgACBAAAAAAAgAAAAAAQAAAAAA=</HashCode>
+      <FileName>Concretes\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Model.Concretes.Company" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAgAAAAAAAAAAAACBAAAEAAAAAAAAABQAAAAAA=</HashCode>
+      <FileName>Concretes\Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Model.Concretes.Customer" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Model.Concretes.Personnel" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\Personnel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Model.Concretes.RentModel" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACgQEAACAABBAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Concretes\RentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Model.Concretes.Rezerv" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACAQAAAAAABAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\Rezerv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Model.Concretes.Vehicle" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAgAAAAiAABAAAQABAEAAAEAAAAIAAAAIgIAAQ=</HashCode>
+      <FileName>Concretes\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

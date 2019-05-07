@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rent.Data.Concretes.AddressRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAACAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\AddressRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Concretes.CommonRepository" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\CommonRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Data.Concretes.CompanyRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAACAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\CompanyRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Concretes.CustomerRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAACABAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\CustomerRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Concretes.MemberRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAACABAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\MemberRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Concretes.PersonnelRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAACABAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\PersonnelRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Concretes.RentRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAAKAAAAAAAAAAEAAAAAAAAAAAhAAAA=</HashCode>
+      <FileName>Concretes\RentRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Concretes.RezervRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAACAAAAAAAAAAEAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Concretes\RezervRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Concretes.VehicleRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAACAABAACAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concretes\VehicleRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Rent.Data.Data.DataTypeNumbers" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAgAAAACAAAAAAAgAAAAAUAAAAAAAEAQAAAAAA=</HashCode>
+      <FileName>Data\DataTypeNumbers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rent.Data.Data.DataTypes" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAIAAAABAAAABAAAAMABAAAAAAAAAAAI=</HashCode>
+      <FileName>Data\DataTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Rent.Data.Abstracts.IRepository&lt;TEntity&gt;" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAACAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstracts\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
