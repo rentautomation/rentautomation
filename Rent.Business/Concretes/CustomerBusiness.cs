@@ -21,10 +21,15 @@ namespace Rent.Business.Concretes
 
                 if(currentCustomer != null)
                 {
-                    throw new Exception("CustomerBisuness::SignUp: Customer Already Registered!\n");
+                    throw new Exception(" Customer Already Registered!\n");
                 }
-                repository.Insert(customer);
-            }catch(Exception ex)
+
+                bool insert = repository.Insert(customer);
+                if (!insert)
+                    throw new Exception(" Operation Failed");
+                currentCustomer = repository.SelectedByUsername(customer.username);
+            }
+            catch(Exception ex)
             {
                 throw new Exception("CustomerBisuness::SignUp: Error occured.\n", ex);
             }

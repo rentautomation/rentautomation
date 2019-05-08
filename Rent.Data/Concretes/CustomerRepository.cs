@@ -40,8 +40,13 @@ namespace Rent.Data.Concretes
             try
             {
 
-                //First Add Member
                 MemberRepository repository = new MemberRepository();
+
+                Member member1 = repository.SelectedByUsername(entity.username);
+                if (member1 != null)
+                    return false;
+
+                //First Add Member
                 repository.Insert(entity);
                 //Get member
                 Member member = repository.SelectedByUsername(entity.username);
@@ -49,7 +54,7 @@ namespace Rent.Data.Concretes
                 //Then add customer
                 var query = new StringBuilder();
                 query.Append("INSERT [dbo].[customertable] ");
-                query.Append("( [membernumber] ) ");
+                query.Append("([membernumber] ) ");
                 query.Append("VALUES ");
                 query.Append("(@membernumber) ");
 
@@ -61,7 +66,7 @@ namespace Rent.Data.Concretes
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
 
-                cmd.Parameters.Add("@membernumber", member.membernumber);
+                cmd.Parameters.AddWithValue("@membernumber", member.membernumber);
                 cmd.ExecuteNonQuery();
 
                 DBHelper.Close();
@@ -143,7 +148,7 @@ namespace Rent.Data.Concretes
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.AddWithValue("@username", username);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -247,7 +252,7 @@ namespace Rent.Data.Concretes
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@customernumber", customernumber);
+                cmd.Parameters.AddWithValue("@customernumber", customernumber);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)

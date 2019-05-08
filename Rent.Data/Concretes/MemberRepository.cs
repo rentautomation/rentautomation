@@ -70,7 +70,7 @@ namespace Rent.Data.Concretes
 
         public Member SelectedByUsername(string username)
         {
-            Member member = new Customer();
+            Member member = null;
             try
             {
                 var query = new StringBuilder();
@@ -91,7 +91,7 @@ namespace Rent.Data.Concretes
                 {
                     while (reader.Read())
                     {
-
+                        member = new Customer();
                         member.membernumber = reader.GetInt32(0);
                         member.username = reader.GetString(1);
                         member.name = reader.GetString(2);

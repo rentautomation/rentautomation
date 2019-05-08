@@ -54,8 +54,8 @@ namespace Rent.Data.Concretes
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
 
-                cmd.Parameters.Add("@membernumber", member.membernumber);
-                cmd.Parameters.Add("@companynumber", entity.companynumber);
+                cmd.Parameters.AddWithValue("@membernumber", member.membernumber);
+                cmd.Parameters.AddWithValue("@companynumber", entity.companynumber);
                 cmd.ExecuteNonQuery();
 
                 DBHelper.Close();
@@ -136,7 +136,7 @@ namespace Rent.Data.Concretes
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.AddWithValue("@username", username);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -189,7 +189,7 @@ namespace Rent.Data.Concretes
 
                 DBHelper.Open();
                 var cmd = DBHelper.GetSqlCommand(commandText);
-                cmd.Parameters.Add("@personnelnumber", personnelnumber);
+                cmd.Parameters.AddWithValue("@personnelnumber", personnelnumber);
 
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)

@@ -14,13 +14,15 @@ namespace Test
         static void Main(string[] args)
         {
 
-            //InsertCustomer();
+            InsertCustomer();
             //GetAllCustomer();
             //AddAddress();
             //DeleteAddress();
             //GetCustomerWithUsername();
-            GetAddressByAddressnumber();
+            //GetAddressByAddressnumber();
         }
+
+       
 
         public static void GetAddressByAddressnumber()
         {
@@ -51,7 +53,7 @@ namespace Test
             StringBuilder stringBuilder = new StringBuilder();
             try
             {
-                Customer customer = repository.SelectedByUsername("oguzhan");
+                Customer customer = repository.SelectedByUsername("saliha");
                     stringBuilder.Append(customer.username + " ");
                     stringBuilder.Append(customer.name + " ");
                     stringBuilder.Append(customer.lastname + " ");
@@ -141,16 +143,19 @@ namespace Test
         {
             IRepository<Customer> repository = new CustomerRepository();
             Customer customer = new Customer();
-            customer.name = "Merve";
-            customer.lastname = "Güneş";
-            customer.username = "mrvgunes";
+            customer.name = "Salih";
+            customer.lastname = "Kardeş";
+            customer.username = "salih";
             customer.password = "123456";
-            customer.birthdate = new DateTime(1979, 09, 17);
+            customer.birthdate = new DateTime(1977, 08, 11);
             customer.age = DateTime.Now.Year - customer.birthdate.Year;
             try
             {
-                repository.Insert(customer);
-                Console.WriteLine("İşlem Başarılı");
+                bool insert = repository.Insert(customer);
+                if(insert)
+                    Console.WriteLine("İşlem Başarılı");
+                else
+                    Console.WriteLine("İşlem Başarısız.");
             }
             catch (Exception e)
             {
